@@ -37,7 +37,7 @@ std::string convertToPostfix(std::string prefix)
 int main()
 {
 
-    std::string prefix = "*-A/BC-/AKL";
+    std::string prefix = "--*ab*/c+d*efgh";
     std::cout << "Prefix expression : " << prefix << std::endl;
     std::cout << "Postfix expression : " << convertToPostfix(prefix);
     // std::cout << isOperator('a') << std::endl;
