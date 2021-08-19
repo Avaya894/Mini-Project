@@ -66,7 +66,7 @@ std::string ArrayStack::pop()
     }
     else
     {
-        std::cout << "List is Empty !!!" << std::endl;
+       throw "List is Empty !!!";
         
     }
 }
@@ -75,7 +75,7 @@ std::string ArrayStack::top() const
 {
     if (isEmpty())
     {
-        return "List is empty ";
+        throw "List is empty ";
     }
     else
     {
