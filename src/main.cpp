@@ -15,7 +15,7 @@ std::string convertToPostfix(std::string prefix)
 {
 
     int length = prefix.size();
-    Stack<std::string> *expression = new ArrayStack<std::string>(length);
+    Stack *expression = new ArrayStack(length);
     for (int i = length - 1; i >= 0; i--)
     {
         if (isOperator(prefix[i]))
@@ -32,12 +32,20 @@ std::string convertToPostfix(std::string prefix)
         else
             expression->push(std::string(1, prefix[i]));
     }
-    return expression->top();
+    std::cout << "****************************" << std::endl;
+    std::string postfix = "";
+    while (!(expression->isEmpty()))
+    {
+        postfix += expression->pop();
+        std::cout << "Postfix now:" << postfix << std::endl;
+    }
+    return postfix;
 }
 int main()
 {
-
-    std::string prefix = "--*ab*/c+d*efgh";
+    std::string prefix = "- - * a b * / c + d * e f g h";
+    // std::cout << "Enter the prefix:" << std::endl;
+    // std::cin >> prefix ;
     std::cout << "Prefix expression : " << prefix << std::endl;
     std::cout << "Postfix expression : " << convertToPostfix(prefix);
     // std::cout << isOperator('a') << std::endl;

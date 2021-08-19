@@ -1,20 +1,19 @@
 #pragma once
-template <typename T>
+
 class Stack
 {
 public:
-    virtual bool push(const T element) = 0;
+    virtual bool push(const std::string element) = 0;
     virtual bool isFull() const = 0;
     virtual bool isEmpty() const = 0;
-    virtual bool pop() = 0;
-    virtual T top() const = 0;
+    virtual std::string pop() = 0;
+    virtual std::string top() const = 0;
 };
 
-template <typename T>
-class ArrayStack : public Stack<T>
+class ArrayStack : public Stack
 {
 private:
-    T *data;
+    std::string *data;
     int topIndex;
     int size;
 
@@ -22,34 +21,32 @@ public:
     ArrayStack(int size);
     virtual bool isFull() const;
     virtual bool isEmpty() const;
-    virtual bool push(const T element);
-    virtual bool pop();
-    virtual T top() const;
+    virtual bool push(const std::string element);
+    virtual std::string pop();
+    virtual std::string top() const;
     ~ArrayStack();
 };
 
-template <typename T>
-ArrayStack<T>::ArrayStack(int size)
-    : size(size - 1), topIndex(-1), data(new T[size - 1]) {}
+ArrayStack::ArrayStack(int size)
+    : size(size - 1), topIndex(-1), data(new std::string[size - 1]) {}
 
-template <typename T>
-bool ArrayStack<T>::isFull() const
+bool ArrayStack::isFull() const
 {
     return (topIndex >= size);
 }
 
-template <typename T>
-bool ArrayStack<T>::isEmpty() const
+bool ArrayStack::isEmpty() const
 {
     return (topIndex < 0);
 }
-template <typename T>
-bool ArrayStack<T>::push(const T element)
+
+bool ArrayStack::push(const std::string element)
 {
     if (!isFull())
     {
         topIndex++;
         data[topIndex] = element;
+        std::cout << "Pushed:" << element << std::endl;
 
         return true;
     }
@@ -59,24 +56,22 @@ bool ArrayStack<T>::push(const T element)
         return false;
     }
 }
-template <typename T>
-bool ArrayStack<T>::pop()
+
+std::string ArrayStack::pop()
 {
     if (!isEmpty())
     {
+        return  data[topIndex--];
 
-        topIndex--;
-        return true;
     }
     else
     {
         std::cout << "List is Empty !!!" << std::endl;
-        return false;
+        
     }
 }
 
-template <typename T>
-T ArrayStack<T>::top() const
+std::string ArrayStack::top() const
 {
     if (isEmpty())
     {
@@ -87,8 +82,8 @@ T ArrayStack<T>::top() const
         return data[topIndex];
     }
 }
-template <typename T>
-ArrayStack<T>::~ArrayStack()
+
+ArrayStack::~ArrayStack()
 {
     delete data;
 }
