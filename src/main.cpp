@@ -68,12 +68,12 @@ int main()
 {
     try
     {
-        // std::string prefix = "- - * a b * / c + d * e f g h";
+        std::string prefix = "- - * a b * / c + d * e f g    h";
 
-        std::string prefix;
+        // std::string prefix;
 
-        std::cout << "Prefix Expression:" << std::endl;
-        getline(std::cin, prefix);
+        // std::cout << "Prefix Expression:" << std::endl;
+        // getline(std::cin, prefix);
 
         std::cout << "Prefix expression : " << prefix << std::endl;
         std::cout << "Postfix expression : " << convertToPostfix(prefix);
